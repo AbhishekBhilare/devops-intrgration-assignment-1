@@ -37,7 +37,7 @@ public class AppTest
     }
     
     public void demoTest(){
-        assert(true, 10 < 15)
+        assert(true, 10 < 15);
     }
     
 }
