@@ -7,29 +7,23 @@ pipeline {
         
     }
     stages {
-        def scannerHome = tool 'sonar';
-        stage('SonarQube analysis') {
-            steps{
-                    
-    withSonarQubeEnv('Sonar-Install') {
-      bat "${scannerHome}/bin/sonar-scanner \
-      -D sonar.login=admin \
-      -D sonar.password=Abhishek@123 \
-      -D sonar.projectKey=devoops-automation-jenkins \
-      -D sonar.exclusions=vendor/**,resources/**,**/*.java \
-      -D sonar.host.url=http://localhost:9000"
-    }
-  }
+        stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('Sonar-Server') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'Maven-3.8.7') {
+                        bat 'mvn clean package sonar:sonar'
+                    }
+                }
             }
-
-        stage ('Build maven project'){
-            steps{
-                bat 'docker --version'
-                bat 'java -version'
-                bat 'mvn -v'
-                checkout scmGit(branches: [[name: '*/devlopment']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AbhishekBhilare/Devops-demo.git']])
-                bat 'mvn clean install'
-                echo '-------------------------build sucessfully done --------------------'
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
         stage ('docker image building'){
