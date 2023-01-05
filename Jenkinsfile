@@ -8,7 +8,8 @@ pipeline {
     }
     stages {
         stage('SonarQube analysis') {
-    def scannerHome = tool 'sonar';
+            steps{
+                    def scannerHome = tool 'sonar';
     withSonarQubeEnv('Sonar-Install') {
       bat "${scannerHome}/bin/sonar-scanner \
       -D sonar.login=admin \
@@ -18,6 +19,8 @@ pipeline {
       -D sonar.host.url=http://localhost:9000"
     }
   }
+            }
+
         stage ('Build maven project'){
             steps{
                 bat 'docker --version'
