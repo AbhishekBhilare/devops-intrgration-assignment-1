@@ -64,9 +64,9 @@ pipeline {
             }
             when {
                 expression { user == 'hardCodeApproverJenkinsId'}
-            }
-            steps {
+              steps {
                 emailext body: 'Project is in deployment stage and all tesing and Qa is done', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
+            }
             }
         }
     }
