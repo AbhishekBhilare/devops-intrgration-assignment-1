@@ -24,6 +24,7 @@ pipeline {
                         -Dsonar.host.url=$sonarurl \
                         -Dsonar.login=$sonarlogin'
                 }
+                }
         }
         stage ('docker image building'){
             steps {
