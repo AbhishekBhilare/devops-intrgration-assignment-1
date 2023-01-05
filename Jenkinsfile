@@ -11,7 +11,7 @@ pipeline {
                 bat 'docker --version'
                 bat 'java -version'
                 bat 'mvn -v'
-                checkout scmGit(branches [[name 'master']], extensions [], userRemoteConfigs [[url 'httpsgithub.comAbhishekBhilareDevops-demo.git']])
+                checkout scmGit(branches: [[name: '*/devlopment']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AbhishekBhilare/Devops-demo.git']])
                 bat 'mvn clean install'
                 echo '-------------------------build sucessfully done --------------------'
             }
