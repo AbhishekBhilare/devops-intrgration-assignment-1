@@ -4,6 +4,7 @@ pipeline {
         jdk 'java.home'
         maven 'Maven-3.8.7'
         dockerTool 'docker'
+        tool 'sonar'
     }
     stages {
         stage('SonarQube Analysis'){
