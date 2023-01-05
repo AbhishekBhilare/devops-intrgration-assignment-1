@@ -26,7 +26,7 @@ pipeline {
                 }
             }
         }
-        stage ('docker image building'){
+        stage ('Building Docker Image'){
             steps {
                 script{
                     echo '-----------------------docker iamge building started---------------------'
@@ -34,11 +34,9 @@ pipeline {
                 }   
             }
         }
-        stage ('docker image to docker hub '){
+        stage ('Docker Image->Docker Hub'){
             steps {
                 script {
-                    emailext body: 'Project is in deployment stage and deployment is done by the devloper', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
-                    echo '---------------------entered in the docker to docker hub-------------------- '
                     withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'DOCKERHUBPWD', usernameVariable: 'DOCKERHUBUSERNAME')]) {
                         bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
                     }
@@ -46,6 +44,9 @@ pipeline {
                     bat 'docker push abhishekbhilare/devops-automationdevops-build-lastfile'
                 }
             }
+        }
+        stage ('Deployment') {
+            emailext body: 'Project is in deployment stage and deployment is done by the devloper', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
         }
     }
 }
