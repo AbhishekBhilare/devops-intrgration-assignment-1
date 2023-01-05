@@ -7,24 +7,19 @@ pipeline {
         
     }
     stages {
-        stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('Sonar-Install') {
-                    bat 'mvn clean package sonar:sonar'
-                } // submitted SonarQube taskId is automatically attached to the pipeline context
-            }
+            stage('Scan') {
+      steps {
+        withSonarQubeEnv(installationName: 'Sonar-Install') { 
+          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
         }
-
-// No need to occupy a nod
-    stage("Quality Gate"){
-        steps {
-            timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-                def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-                if (qg.status != 'OK') {
-                    error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                }
-            }
+      }
+    }
+    stage("Quality Gate") {
+      steps {
+        timeout(time: 2, unit: 'MINUTES') {
+          waitForQualityGate abortPipeline: true
         }
+      }
     }
         stage ('Build maven project'){
             steps{
