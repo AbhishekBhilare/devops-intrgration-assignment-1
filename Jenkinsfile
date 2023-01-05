@@ -31,7 +31,7 @@ pipeline {
                     emailext body: 'Project is in deployment stage and deployment is done by the devloper', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
                     echo '---------------------entered in the docker to docker hub-------------------- '
                     withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'dockerhubpwd', usernameVariable: 'dockerhubuser')]) {
-                        bat 'docker login --username={dockerhubuser}  --password={dockerhubpwd}'
+                        bat 'docker login --username=${dockerhubuser}  --password=${dockerhubpwd}'
                     }
                     echo "pushing docker image "
                     bat 'docker push abhishekbhilare/abhishekbhilare:devops-automationdevops-build-lastfile'
