@@ -27,7 +27,7 @@ pipeline {
         stage ('docker image to docker hub '){
             steps {
                 script {
-                    emailext body 'Project is in deploment satage  cahnges made by the developer', subject 'All test cases are done ready to deploy the project', to 'abhishekbhilarea.b@gmail.com'
+                    emailext body: 'Project is in deploment satage  cahnges made by the developer', subject: 'All test cases are done ready to deploy the project', to: 'abhishekbhilarea.b@gmail.com'
                     echo '---------------------entered in the docker to docker hub-------------------- '
                     withCredentials([string(credentialsId 'DockerHubPWD', variable 'DockerHubPWD')]) {
                         bat 'docker login -u {AbhishekBhilare} -p {DockerHubPWD}'
