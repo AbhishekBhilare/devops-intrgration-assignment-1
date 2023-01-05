@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage ('Build maven project'){
             steps{
+                bat 'docker login --username=abhishekbhilare  --password=Abhishek@123'
                 bat 'docker --version'
                 bat 'java -version'
                 bat 'mvn -v'
@@ -30,8 +31,6 @@ pipeline {
                     emailext body: 'Project is in deployment stage and deployment is done by the devloper', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
                     echo '---------------------entered in the docker to docker hub-------------------- '
                     withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'dockerhubpwd', usernameVariable: 'dockerhubuser')]) {
-                        bat echo dockerhubuser
-                        bat echo dockerhubpwd
                         bat 'docker login --username=dockerhubuser  --password=dockerhubpwd'
                     }
                     echo "pushing docker image "
