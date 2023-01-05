@@ -90,7 +90,15 @@
               </execution>
           </executions>
       </plugin>
-      <plugin>
+	    <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.0</version>
+    <configuration>
+        <release>11</release>  <!--or <release>10</release>-->
+    </configuration>
+</plugin>
+<!--       <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
               <source>1.8</source>
@@ -105,7 +113,7 @@
                   <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
               </compilerArgs>
           </configuration>
-      </plugin>
+      </plugin> -->
     </plugins>
 <finalName>devops-build-lastfile</finalName>
   </build>
