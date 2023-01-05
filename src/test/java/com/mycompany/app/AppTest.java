@@ -35,4 +35,9 @@ public class AppTest
     {
         assertTrue( true );
     }
+    
+    public void demoTest(){
+        assert(true, 10 < 15)
+    }
+    
 }
