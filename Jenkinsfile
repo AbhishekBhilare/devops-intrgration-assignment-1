@@ -45,7 +45,19 @@ pipeline {
                 }   
             }
         }
-        stage('deploy') {
+        stage ('docker image to docker hub '){
+            steps {
+                script {
+                    echo '---------------------entered in the docker to docker hub-------------------- '
+                    withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'DOCKERHUBPWD', usernameVariable: 'DOCKERHUBUSERNAME')]) {
+                        bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
+                    }
+                    echo "pushing docker image "
+                    bat 'docker push abhishekbhilare/devops-jarfile'
+                }
+            }
+        }
+       stage('deploy') {
             input {
                 message "Should we continue?"
                 ok "Yes"
@@ -54,20 +66,7 @@ pipeline {
                 expression { user == 'hardCodeApproverJenkinsId'}
             }
             steps {
-                sh "echo 'describe your deployment' "
-            }
-        }
-        stage ('docker image to docker hub '){
-            steps {
-                script {
-                    emailext body: 'Project is in deployment stage and all tesing and Qa is done', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
-                    echo '---------------------entered in the docker to docker hub-------------------- '
-                    withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'DOCKERHUBPWD', usernameVariable: 'DOCKERHUBUSERNAME')]) {
-                        bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
-                    }
-                    echo "pushing docker image "
-                    bat 'docker push abhishekbhilare/devops-jarfile'
-                }
+                emailext body: 'Project is in deployment stage and all tesing and Qa is done', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
             }
         }
     }
