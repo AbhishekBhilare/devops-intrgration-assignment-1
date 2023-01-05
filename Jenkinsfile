@@ -29,9 +29,6 @@ pipeline {
                 script {
                     emailext body: 'Project is in deploment satage  cahnges made by the developer', subject: 'All test cases are done ready to deploy the project', to: 'abhishekbhilarea.b@gmail.com'
                     echo '---------------------entered in the docker to docker hub-------------------- '
-                    withCredentials([string(credentialsId 'DockerHubPWD', variable 'DockerHubPWD')]) {
-                        bat 'docker login -u {AbhishekBhilare} -p {DockerHubPWD}'
-                    }
                     withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'dockerhubpwd', usernameVariable: 'dockerhubuser')]) {
                         bat 'docker login -u {dockerhubuser} -p {dockerhubpwd}'
                     }
