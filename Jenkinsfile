@@ -33,7 +33,7 @@ pipeline {
                         bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
                     }
                     echo "pushing docker image "
-                    bat 'docker push abhishekbhilare/abhishekbhilare/devops-automationdevops-build-lastfile'
+                    bat 'docker push abhishekbhilare/devops-automationdevops-build-lastfile'
                 }
             }
         }
