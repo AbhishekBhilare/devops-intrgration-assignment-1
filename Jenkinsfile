@@ -16,6 +16,15 @@ pipeline {
                 echo '-------------------------build sucessfully done --------------------'
             }
         }
+        stage('SonarQube Analysis'){
+            steps{
+                withSonarQubeEnv('Sonar-Install') {
+                    bat 'mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=devsecopsproject-key \
+                        -Dsonar.host.url=$sonarurl \
+                        -Dsonar.login=$sonarlogin'
+                }
+        }
         stage ('docker image building'){
             steps {
                 script{
