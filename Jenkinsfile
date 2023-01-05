@@ -6,6 +6,13 @@ pipeline {
         dockerTool 'docker'
     }
     stages {
+        stage('SonarQube Analysis'){
+            steps{
+                withSonarQubeEnv('Sonar-Install') {
+                    bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                }
+            }
+        }
         stage ('Build maven project'){
             steps{
                 bat 'docker --version'
@@ -15,16 +22,6 @@ pipeline {
                 bat 'mvn clean install'
                 echo '-------------------------build sucessfully done --------------------'
             }
-        }
-        stage('SonarQube Analysis'){
-            steps{
-                withSonarQubeEnv('Sonar-Install') {
-                    bat 'mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=devsecopsproject-key \
-                        -Dsonar.host.url=$sonarurl \
-                        -Dsonar.login=$sonarlogin'
-                }
-                }
         }
         stage ('docker image building'){
             steps {
