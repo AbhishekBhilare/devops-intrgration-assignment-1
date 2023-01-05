@@ -4,16 +4,9 @@ pipeline {
         jdk 'java.home'
         maven 'Maven-3.8.7'
         dockerTool 'docker'
-        SonarRunnerInstallation 'sonar'
+        
     }
     stages {
-        stage('SonarQube Analysis'){
-            steps{
-                withSonarQubeEnv('Sonar-Install') {
-                    bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-                }
-            }
-        }
         stage ('Build maven project'){
             steps{
                 bat 'docker --version'
@@ -41,7 +34,7 @@ pipeline {
                         bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
                     }
                     echo "pushing docker image "
-                    bat 'docker push devops-automation: abhishekbhilare/devops-automationdevops-build-lastfile'
+                    bat 'docker push abhishekbhilare/devops-automationdevops-build-lastfile'
                 }
             }
         }
