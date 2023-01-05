@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script{
                     echo '-----------------------docker iamge building started---------------------'
-                    bat 'docker build -t devops-automationdevops-build-lastfile .'
+                    bat 'docker build -t abhishekbhilare/devops-automationdevops-build-lastfile .'
                 }   
             }
         }
@@ -32,7 +32,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'dockerhubpwd', usernameVariable: 'dockerhubuser')]) {
                         bat 'docker login -u {dockerhubuser} -p {dockerhubpwd}'
                     }
-                    bat 'docker push devops-automationdevops-build-lastfile '
+                    echo "pushing docker image "
+                    bat 'docker push abhishekbhilare/devops-automationdevops-build-lastfile '
                 }
             }
         }
