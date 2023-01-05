@@ -7,9 +7,10 @@ pipeline {
         
     }
     stages {
+        def scannerHome = tool 'sonar';
         stage('SonarQube analysis') {
             steps{
-                    def scannerHome = tool 'sonar';
+                    
     withSonarQubeEnv('Sonar-Install') {
       bat "${scannerHome}/bin/sonar-scanner \
       -D sonar.login=admin \
