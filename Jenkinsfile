@@ -9,7 +9,7 @@ pipeline {
         stage ('Build maven project'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'DOCKERHUBPWD', usernameVariable: 'DOCKERHUBUSERNAME')]) {
-                        bat 'docker login --username=$DOCKERHUBUSERNAME  --password=$DOCKERHUBPWD '
+                        bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
                     }
                 bat 'docker --version'
                 bat 'java -version'
