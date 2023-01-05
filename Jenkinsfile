@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script{
                     echo '-----------------------docker iamge building started---------------------'
-                    bat 'docker build -t abhishekbhilare/devops-automationdevops-build-lastfile .'
+                    bat 'docker build -t abhishekbhilare/devops-jarfile .'
                 }   
             }
         }
@@ -66,7 +66,7 @@ pipeline {
                         bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
                     }
                     echo "pushing docker image "
-                    bat 'docker push abhishekbhilare/devops-automationdevops-build-lastfile'
+                    bat 'docker push abhishekbhilare/devops-jarfile'
                 }
             }
         }
