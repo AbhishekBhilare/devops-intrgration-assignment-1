@@ -7,6 +7,17 @@ pipeline {
         
     }
     stages {
+        stage('SonarQube analysis') {
+    def scannerHome = tool 'sonar';
+    withSonarQubeEnv('Sonar-Install') {
+      sh "${scannerHome}/bin/sonar-scanner \
+      -D sonar.login=admin \
+      -D sonar.password=Abhishek@123 \
+      -D sonar.projectKey=sonarqubetest \
+      -D sonar.exclusions=vendor/**,resources/**,**/*.java \
+      -D sonar.host.url=http://192.168.1XX.XX:9000/"
+    }
+  }
         stage ('Build maven project'){
             steps{
                 bat 'docker --version'
