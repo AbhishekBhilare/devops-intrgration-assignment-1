@@ -46,7 +46,9 @@ pipeline {
             }
         }
         stage ('Deployment') {
-            emailext body: 'Project is in deployment stage and deployment is done by the devloper', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
+            steps{
+                emailext body: 'Project is in deployment stage and deployment is done by the devloper', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
+            }
         }
     }
 }
