@@ -47,6 +47,7 @@ pipeline {
         }
         stage ('Deployment') {
             steps{
+                echo 'deployment'
                 emailext body: 'Project is in deployment stage and deployment is done by the devloper', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
             }
         }
