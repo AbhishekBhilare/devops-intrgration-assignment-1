@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script{
                     echo '-----------------------docker iamge building started---------------------'
-                    bat 'docker build -t abhishekbhilare/my-app-1.0-SNAPSHOT .'
+                    bat 'docker build -t abhishekbhilare/my-app-1.0-snapshot .'
                 }   
             }
         }
@@ -47,11 +47,11 @@ pipeline {
                         bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
                     }
                     echo "pushing docker image "
-                    bat 'docker push abhishekbhilare/my-app-1.0-SNAPSHOT'
-                    bat 'docker tag devops-assignment-02:my-app-1.0-SNAPSHOT 272814864966.dkr.ecr.us-east-1.amazonaws.com/devops-assignment-02:my-app-1.0-SNAPSHOT'
+                    bat 'docker push abhishekbhilare/my-app-1.0-snapshot'
+                    bat 'docker tag devops-assignment-02:my-app-1.0-snapshot 272814864966.dkr.ecr.us-east-1.amazonaws.com/devops-assignment-02:my-app-1.0-snapshot'
                     //for ecr
                     docker.withRegistry("https://" + registry, "ecr:us-east-1:" + registryCredential) {
-                        bat 'docker push 272814864966.dkr.ecr.us-east-1.amazonaws.com/devops-assignment-02:my-app-1.0-SNAPSHOT'
+                        bat 'docker push 272814864966.dkr.ecr.us-east-1.amazonaws.com/devops-assignment-02:my-app-1.0-snapshot'
                 }
                 }
             }
