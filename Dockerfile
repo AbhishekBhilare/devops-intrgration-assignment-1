@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 8080
-ADD target/my-app-1.0-snapshot.jar my-app-1.0-snapshot.jar
-ENTRYPOINT ["java","-jar","/my-app-1.0-snapshot.jar"]
+ADD target/devops-jarfile.jar devops-jarfile.jar
+ENTRYPOINT ["java","-jar","/devops-jarfile.jar"]
