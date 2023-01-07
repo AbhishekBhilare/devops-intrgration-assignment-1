@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script{
                     echo '-----------------------docker iamge building started---------------------'
-                    bat 'docker build -t devops-assignment-02.'
+                    bat 'docker build -t devops-assignment-02 .'
                 }   
             }
         }
