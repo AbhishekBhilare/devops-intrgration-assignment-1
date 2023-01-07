@@ -3,10 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mycompany.app</groupId>
   <artifactId>my-app</artifactId>
-<packaging>jar</packaging>
- <build>
-   <finalName>my-app-1.0-SNAPSHOT</finalName>
-	</build>
+	  <packaging>jar</packaging>
+  <version>1.0-snapshot</version>
+  <name>my-app</name>
   <url>http://maven.apache.org</url>
 
   <properties>
