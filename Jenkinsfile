@@ -1,7 +1,5 @@
 pipeline {
     agent any 
-
-    }
     tools {
         jdk 'java.home'
         maven 'Maven-3.8.7'
@@ -54,5 +52,5 @@ pipeline {
                 emailext body: 'Project is in deployment stage and deployment is done by the devloper', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
             }
         }
-    
+}
 }
