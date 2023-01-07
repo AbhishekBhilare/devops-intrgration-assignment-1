@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 8080
-ADD target/devops-build-lastfile.jar devops-build-lastfile.jar
-ENTRYPOINT ["java","-jar","/devops-build-lastfile.jar"]
+ADD target/my-app-1.0-SNAPSHOT.jar my-app-1.0-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/my-app-1.0-SNAPSHOT.jar"]
