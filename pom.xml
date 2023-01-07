@@ -3,9 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mycompany.app</groupId>
   <artifactId>my-app</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>my-app</name>
+<packaging>jar</packaging>
+ <build>
+   <finalName>my-app-1.0-SNAPSHOT</finalName>
+	</build>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -100,6 +101,6 @@
 </plugin>
 
     </plugins>
-<finalName>devops-build-lastfile</finalName>
+
   </build>
 </project>
