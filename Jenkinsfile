@@ -1,5 +1,11 @@
 pipeline {
     agent any 
+    // for ecr
+    environment {
+        registry = '272814864966.dkr.ecr.us-east-1.amazonaws.com/devops-assignment-02'
+        registryCredential = '0a558f0b-6652-4705-b322-d8a11409a5aa'
+        dockerImage = 'Myimage'
+    }
     tools {
         jdk 'java.home'
         maven 'Maven-3.8.7'
@@ -42,6 +48,11 @@ pipeline {
                     }
                     echo "pushing docker image "
                     bat 'docker push abhishekbhilare/devops-automationdevops-build-lastfile'
+                    bat 'docker tag devops-assignment-02:devops-automationdevops-build-lastfile 272814864966.dkr.ecr.us-east-1.amazonaws.com/devops-assignment-02:devops-automationdevops-build-lastfile'
+                    //for ecr
+                    docker.withRegistry("https://" + registry, "ecr:us-east-1:" + registryCredential) {
+                        bat 'docker push 272814864966.dkr.ecr.us-east-1.amazonaws.com/devops-assignment-02:devops-automationdevops-build-lastfile'
+                }
                 }
             }
         }
