@@ -36,7 +36,7 @@ pipeline {
         stage ('Docker Image->Docker Hub'){
             steps {
                 script {
-                    cho '---------------------entered in the docker to docker hub-------------------- '
+                    echo '---------------------entered in the docker to docker hub-------------------- '
                     withCredentials([usernamePassword(credentialsId: 'f07f5cfa-9ff8-4c57-b198-32eb76dcd92c', passwordVariable: 'DOCKERHUBPWD', usernameVariable: 'DOCKERHUBUSERNAME')]) {
                         bat 'docker login --username=%DOCKERHUBUSERNAME%  --password=%DOCKERHUBPWD% '
                     }
