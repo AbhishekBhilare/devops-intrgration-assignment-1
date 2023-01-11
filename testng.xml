@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Practice Selenium Suite" parallel = "none">
-  <test name="Basic Test 1">
-      <classes>
-      <class name="com.mycompany.app.SeleniumTest"/>
-      </classes>
-  </test> <!-- Test --> 
-</suite> <!-- Suite -->
