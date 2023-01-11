@@ -67,16 +67,7 @@ pipeline {
             }
          
         }
-      stage('deploy') {
-            input {
-                message "Should we continue?"
-                ok "Yes"
-            }
-             steps {
-                emailext body: 'Project is in deployment stage and all tesing and Qa is done', subject: 'Regarding the devlpoment', to: 'abhishekbhilarea.b@gmail.com'
-            }
-         
-        }
+
       stage('Production') {
              steps {
                 bat 'docker pull abhishekbhilare/devops-jarfile:latest'
