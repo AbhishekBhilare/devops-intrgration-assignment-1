@@ -55,11 +55,12 @@ pipeline {
             }
         }
        stage('deploy') {
-           steps{
                input {
                 message "Should we continue?"
                 ok "Yes"
             }
+           steps {
+                echo 'redy to deploy'           
            }
         }
 
