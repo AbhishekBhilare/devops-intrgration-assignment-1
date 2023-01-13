@@ -55,14 +55,11 @@ pipeline {
             }
         }
        stage('deploy') {
-           steps {
-                
                input {
                 message "Should we continue?"
                 ok "Yes"
             }
                
-            }
         }
 
       stage('Production') {
