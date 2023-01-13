@@ -50,12 +50,12 @@ pipeline {
        stage('deploy') {
            
            steps {
-               script {
+               
                    emailext body: '\'\'\'<h1>All is set to deployment please approve this steps to contiue deployment </h1><a href="${BUILD_URL}input">click to approve</a>\'\'\'', 
                     subject: "[Jenkins]${currentBuild.fullDisplayName}",
                      to: 'abhishekbhilarea.b@gmail.com'
           
-               }
+         
            }
             input {
                 message "Should we continue?"
