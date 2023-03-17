@@ -56,7 +56,7 @@ pipeline {
             steps{
                 echo 'production'
                 bat 'docker pull abhishekbhilare/devops-jarfile:latest'
-                bat 'docker run -p 8000:8000 abhishekbhilare/devops-jarfile:latest'
+                bat 'docker run -p 8000:8888 abhishekbhilare/devops-jarfile:latest'
             }
         }
 }
